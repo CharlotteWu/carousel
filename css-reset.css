@@ -1,0 +1,32 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, hr, pre, form, fieldset, input, textarea, p, blockquoteth, td { margin: 0px; padding: 0px; }
+h1, h2, h3, h4, h5, h6 { font-size: 12px; font-weight: normal; }
+ul, ol { list-style: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+object, input, textarea { outline: none; }
+
+fieldset, img { border: 0; }
+address, caption, cite, code, dfn, em, strong, th, var { font-style: normal; font-weight: normal; }
+i { font-style: normal; }
+ol, ul { list-style: none; }
+capation, th { text-align: left; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
+q:before, q:after { content: ''; }
+abbr, acronym { border: 0; }
+
+/* 以下样式根据不同的网站可能需要改写 */
+html{font-family:"微软雅黑","Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;}
+body { background-color: #fff; /*overflow:hidden;height:100%;*/ }
+textarea { font-family: Courier New,sans-serif; font-size: 13px; }
+i { font-style: normal; }
+a { text-decoration: none; color: #000; }
+/*a:visited {color:#000;}*/
+a:hover { /*text-decoration: underline;*/ text-decoration: none; /*color:#000;*/ }
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;  }
+/*placeholder的设置*/
+input::-moz-placeholder, textarea::-moz-placeholder { color: #cccccc; }
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { color: #cccccc; }
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #cccccc; }
+/*a{ -webkit-tap-highlight-color: transparent;-webkit-touch-callout: none; -webkit-user-select: none;}*/
+/*初始化搜索input*/
+input[type=search]::-webkit-search-cancel-button { outline: none; }
+input[type=search]::-webkit-search-cancel-button { -webkit-appearance: none; }
