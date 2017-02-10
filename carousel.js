@@ -21,24 +21,33 @@ window.onload = function () {
     rightButton.className = 'rightButton icon-right iconfont';
     rightButton.id = 'rightButton';
     c.appendChild(rightButton);
-    //设置初始化的长度
-    cul[0].style.left = -100 + '%';
-    //计算图片的总长 每部分图片占据平均的宽度
-    //picNum 图片总数
-    //round时的ul宽度
-    var picNum = cli.length;
-    console.log(picNum * 100 +'%');
-    cul[0].style.width = (picNum * 100) +'%';
+
     // console.log(cul[0].style.width);
     //direction默认为左右round 参数为flow时为上下翻动
     var direction = cul[0].getAttribute('direction');
+    //picNum 图片总数
+    var picNum = cli.length;
 
-    for(var i=0;i<cli.length;i++){
-        cli[i].style.width = (100 / picNum).toFixed(2) + '%';
-        if(direction == 'round' || direction == ''){
+    if(direction == 'round' || direction == ''){
+        //设置初始化的长度
+        cul[0].style.left = -100 + '%';
+        //计算图片的总长 每部分图片占据平均的宽度
+        //round时的ul宽度
+        cul[0].style.width = (picNum * 100) +'%';
+        //每个li的宽度
+        for(var i=0;i<cli.length;i++){
+            cli[i].style.width = (100 / picNum).toFixed(2) + '%';
             cli[i].className = 'round';
         }
+
+    }else if(direction == 'flow'){
+        //设置初始化的长度
+        cul[0].style.top = -100 + '%';
+        //计算图片的总长 每部分图片占据平均的宽度
+        //round时的ul宽度
+        cul[0].style.width =  100 +'%';
     }
+
 
     //carousel functions
 
@@ -99,8 +108,8 @@ window.onload = function () {
         slideToBottom:function () {
             if(parseInt(cul[0].style.top) == -((picNum-1)*100)){
                 cul[0].style.top = -100 +'%';
-                carousel.animation(-100,'top');
             }
+            carousel.animation(-100,'top');
         },
         autoPlay:function(){
             //默认向右滑动播放
@@ -120,9 +129,9 @@ window.onload = function () {
 
     };
     //
-    c.onmouseover(carousel.stopPlay());
-    c.onmouseout(carousel.autoPlay());
-    carousel.autoPlay();
+    // c.onmouseover(carousel.stopPlay());
+    // c.onmouseout(carousel.autoPlay());
+    // carousel.autoPlay();
 
 
 
