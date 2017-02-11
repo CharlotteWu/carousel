@@ -1,3 +1,8 @@
+// optimization:
+//speed优化！！！！！
+//autoplay播放问题
+
+
 window.onload = function () {
 
     var c = document.getElementById('carousel');
@@ -131,7 +136,9 @@ window.onload = function () {
     //
     // c.onmouseover(carousel.stopPlay());
     // c.onmouseout(carousel.autoPlay());
-    // carousel.autoPlay();
+    timer = setInterval(function () {
+        carousel.slideToRight(-100,'left');
+    },30);
 
 
 
@@ -145,7 +152,7 @@ window.onload = function () {
     // }
     //通过按键去调用相对应的方法
     var leftBtn = document.getElementById('leftButton');
-    leftBtn.onclick =  function () {
+    leftBtn.onclick = function () {
         if(direction == 'round' || direction == ''){
             carousel.slideToLeft();
         }else if(direction == 'flow'){
