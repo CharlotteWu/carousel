@@ -56,7 +56,7 @@ window.onload = function () {
 
     //carousel functions
     var timer = null;
-    var currentSettle = parseInt(cul[0].style[direction]);//设置成动态获取的反正在autoplay后由于currentSettle不一致无限+100
+    var currentSettle = parseInt(cul[0].style.left);//设置成动态获取的,在autoplay后由于currentSettle不一致无限+100
     var carousel = {
         //init speed?
         //每个位移的初始总值
@@ -131,18 +131,26 @@ window.onload = function () {
         }
 
     };
+
     //
-
-
     cul[0].onmouseover = function () {
         carousel.stopPlay();
     };
 
-    timer = setInterval(function () {
-        carousel.autoPlay();
-    },2000);
+    //开始时自动播放
+    //鼠标移出再次移进时重新获取当前的位置
+    var auto = cul[0].getAttribute('autoplay');
+    if(auto == 'auto'){
+        timer = setInterval(function () {
+            carousel.autoPlay();
+        },2000);
+    }
 
 
+    //设置自动播放
+    // if(cul[0].autoplay == 'auto'){
+    //     carousel.autoPlay();
+    // }
 
     //初始化
     //判断左右还是上下滚动
@@ -170,8 +178,5 @@ window.onload = function () {
         }
     };
 
-    //设置自动播放
-    // if(cul[0].autoplay == 'auto'){
-    //     carousel.autoPlay();
-    // }
+
 };
