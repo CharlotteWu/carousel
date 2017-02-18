@@ -54,8 +54,8 @@ window.onload = function () {
 
 
     //carousel functions
-    var timer = null;
-    var t =null;
+    var timer = null;//animation : timer
+    var t =null;//autoplay: t
     var currentSettle = 0;
     if(direction == 'round'){
         currentSettle = parseInt(cul[0].style['left']);
@@ -78,11 +78,12 @@ window.onload = function () {
             timer = setInterval(function () {
                 // var speed = -100;
                 //每次运行前首先获取当前的left值
+                //speed正负是否有区别 参数已为负
                 var speed = 0;
                 if(target>0){
-                    speed = 10;
+                    speed = Math.ceil(currentSettle+target - parseInt(cul[0].style[direction]))/8;
                 }else if(target<0){
-                    speed = -10;
+                    speed = Math.ceil(currentSettle+target - parseInt(cul[0].style[direction]))/8;
                 }
                 //console.log(speed);
                 console.log('current：'+ currentSettle);
@@ -143,18 +144,15 @@ window.onload = function () {
     };
 
     //
-
-    cul[0].onmouseout = function () {
-        carousel.autoPlay();
-    }
-    cul[0].onmouseover = function () {
-        carousel.stopPlay();
-    };
-    carousel.autoPlay();
-    //开始时自动播放
-    //鼠标移出再次移进时重新获取当前的位置
-
-
+    //鼠标移出移入时触发
+    // cul[0].onmouseout = function () {
+    //     carousel.autoPlay();
+    // }
+    // cul[0].onmouseover = function () {
+    //     carousel.stopPlay();
+    // };
+    //初始化自动播放
+    // carousel.autoPlay();
 
 
 
@@ -163,14 +161,7 @@ window.onload = function () {
     //     carousel.autoPlay();
     // }
 
-    //初始化
-    //判断左右还是上下滚动
 
-    // if(direction == 'round' || direction == ''){
-    //
-    // }else if(direction == 'flow'){
-    //
-    // }
     //通过按键去调用相对应的方法
     var leftBtn = document.getElementById('leftButton');
     leftBtn.onclick = function () {
