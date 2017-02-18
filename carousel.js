@@ -1,6 +1,5 @@
 // optimization:
 //speed优化！！！！！
-//autoplay播放问题
 
 
 window.onload = function () {
@@ -56,20 +55,27 @@ window.onload = function () {
 
     //carousel functions
     var timer = null;
-    var currentSettle = parseInt(cul[0].style.left);//设置成动态获取的,在autoplay后由于currentSettle不一致无限+100
+    var t =null;
+    var currentSettle = 0;
+    if(direction == 'round'){
+        currentSettle = parseInt(cul[0].style['left']);
+    }else{
+        currentSettle = parseInt(cul[0].style['top']);
+    }
+    //设置成动态获取的,在autoplay后由于currentSettle不一致无限+100,不平衡
     var carousel = {
         //init speed?
         //每个位移的初始总值
         //direction决定是左右还是上下的位移
         animation:function (target,direction) {
             clearInterval(timer);
+            if(parseInt(cul[0].style[direction]) == -100){
+                currentSettle = -100;
+            }
+            if(parseInt(cul[0].style[direction]) == -((picNum-2) * 100)){
+                currentSettle = -((picNum-2) * 100);
+            }
             timer = setInterval(function () {
-                // if(parseInt(cul[0].style[direction]) == -100){
-                //     currentSettle = -100;
-                // }
-                // if(parseInt(cul[0].style[direction]) == -((picNum-2) * 100)){
-                //     currentSettle = -((picNum-2) * 100);
-                // }
                 // var speed = -100;
                 //每次运行前首先获取当前的left值
                 var speed = 0;
@@ -79,12 +85,16 @@ window.onload = function () {
                     speed = -10;
                 }
                 //console.log(speed);
-                var newShift = parseInt(cul[0].style[direction]) + speed;
-                cul[0].style[direction] = newShift +'%';
+                console.log('current：'+ currentSettle);
+                console.log('target：'+target);
+                console.log('direction：'+parseInt(cul[0].style[direction]));
                 //当到达目的位置时
                 if(parseInt(cul[0].style[direction]) == currentSettle+target){
                     clearInterval(timer);
                     currentSettle = parseInt(cul[0].style[direction]);
+                }else{
+                    var newShift = parseInt(cul[0].style[direction]) + speed;
+                    cul[0].style[direction] = newShift +'%';
                 }
             },30);
         },
@@ -117,34 +127,35 @@ window.onload = function () {
         autoPlay:function(){
             //默认向右滑动播放
             if(direction == 'round' || direction == ''){
-                timer = setInterval(function () {
+                t = setInterval(function () {
                     carousel.slideToRight(-100,'left');
                 },2000);
             }else if(direction == 'flow'){
-                timer = setInterval(function () {
+                t = setInterval(function () {
                     carousel.slideToBottom(-100,'top');
                 },2000);
             }
         },
         stopPlay:function(){
-            clearInterval(timer);
+            clearInterval(t);
         }
 
     };
 
     //
+
+    cul[0].onmouseout = function () {
+        carousel.autoPlay();
+    }
     cul[0].onmouseover = function () {
         carousel.stopPlay();
     };
-
+    carousel.autoPlay();
     //开始时自动播放
     //鼠标移出再次移进时重新获取当前的位置
-    var auto = cul[0].getAttribute('autoplay');
-    if(auto == 'auto'){
-        timer = setInterval(function () {
-            carousel.autoPlay();
-        },2000);
-    }
+
+
+
 
 
     //设置自动播放
