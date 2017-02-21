@@ -81,9 +81,11 @@ window.onload = function () {
                 //speed正负是否有区别 参数已为负
                 var speed = 0;
                 if(target>0){
-                    speed = Math.ceil(currentSettle+target - parseInt(cul[0].style[direction]))/8;
+                    // speed = Math.ceil(currentSettle+target - parseInt(cul[0].style[direction]))/8;
+                    speed = 10;
                 }else if(target<0){
-                    speed = Math.ceil(currentSettle+target - parseInt(cul[0].style[direction]))/8;
+                    // speed = Math.ceil(currentSettle+target - parseInt(cul[0].style[direction]))/8;
+                    speed = -10;
                 }
                 //console.log(speed);
                 console.log('current：'+ currentSettle);
