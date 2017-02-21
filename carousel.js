@@ -56,6 +56,18 @@ window.onload = function () {
     //carousel functions
     var timer = null;//animation : timer
     var t =null;//autoplay: t
+
+    var durationTime = 0;
+
+    var duration = parseInt(cul[0].getAttribute('duration'));
+    if( duration == ''){
+        durationTime = 2;
+
+    }else{
+        durationTime = parseInt(cul[0].getAttribute('duration'));
+    }
+
+
     var currentSettle = 0;
     if(direction == 'round'){
         currentSettle = parseInt(cul[0].style['left']);
@@ -99,7 +111,7 @@ window.onload = function () {
                     var newShift = parseInt(cul[0].style[direction]) + speed;
                     cul[0].style[direction] = newShift +'%';
                 }
-            },30);
+            },50);
         },
         slideToLeft:function(){
             //跳转到最后一张时跳至辅助图转回第一张
@@ -132,11 +144,11 @@ window.onload = function () {
             if(direction == 'round' || direction == ''){
                 t = setInterval(function () {
                     carousel.slideToRight(-100,'left');
-                },2000);
+                },durationTime*1000);
             }else if(direction == 'flow'){
                 t = setInterval(function () {
                     carousel.slideToBottom(-100,'top');
-                },2000);
+                },durationTime*1000);
             }
         },
         stopPlay:function(){
@@ -147,14 +159,14 @@ window.onload = function () {
 
     //
     //鼠标移出移入时触发
-    // cul[0].onmouseout = function () {
-    //     carousel.autoPlay();
-    // }
-    // cul[0].onmouseover = function () {
-    //     carousel.stopPlay();
-    // };
+    cul[0].onmouseout = function () {
+        carousel.autoPlay();
+    }
+    cul[0].onmouseover = function () {
+        carousel.stopPlay();
+    };
     //初始化自动播放
-    // carousel.autoPlay();
+    carousel.autoPlay();
 
 
 

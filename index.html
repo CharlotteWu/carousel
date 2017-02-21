@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="carousel.js"></script>
+    <!--<script src="carousel.js"></script>-->
+    <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+    <script src="carousel.jq.js"></script>
     <link rel="stylesheet" type="text/css" href="css-reset.css"/>
     <link rel="stylesheet" type="text/css" href="carousel.css">
     <link rel="stylesheet" type="text/css" href="iconfont/iconfont.css">
@@ -11,11 +13,11 @@
 <body>
 <div class="content">
     <div id="carousel">
-        <!--设置自动播放属性-->
-        <!--autoplay="auto"-->
+        <!--设置每张间隔时间 默认2s-->
+        <!--duration="2"-->
         <!--左右翻动/上下翻动-->
         <!--direction='round/flow'-->
-        <ul direction="round" autoplay="auto">
+        <ul direction="round" duration="3">
             <li><img src="images/1.jpg"></li>
             <li><img src="images/2.jpg"></li>
             <li><img src="images/3.jpg"></li>
