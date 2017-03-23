@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html>
-<body>
-
-<!--<ul id="myList1"><li>Coffee</li><li>Tea</li></ul>-->
-<!--<ul id="unordered">-->
-    <!--<li>item 1</li>-->
-    <!--<li>item 2</li>-->
-    <!--<li>item 3</li>-->
-<!--</ul>-->
-<span></span>
-
-
+<script src="http://libs.7m.com.cn/jquery/1.11.1/jquery.min.js"></script>
 <script>
-//    var myList = document.getElementById("unordered");
-//    var childNode = myList.getElementsByTagName('li');
-//    var deepList = childNode[0].cloneNode(true);
-//    console.log(deepList); //7 (IE < 9 版本情况下为3，因为不会创建空白符节点。)
-//
-//    var shallowList = myList.cloneNode(false);
-//    console.log(shallowList.childNodes.length); //0
-var s = document.getElementsByTagName('span');
-s[0].setAttribute('haha','canyousee');
 
+    window.onload = function () {
+        var test = document.getElementById('test');
+        var li = test.getElementsByTagName('li');
+
+        li.onclick = function () {
+            console.log(li.index)
+        }
+
+    }
 
 </script>
+<body>
 
+<ul id="test">
+    <li>item 1</li>
+    <li>item 2</li>
+    <li>item 3</li>
+</ul>
 
 </body>
 </html>

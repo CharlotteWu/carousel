@@ -1,13 +1,11 @@
 // optimization:
 //speed优化！！！！！
-
+//index问题验证
 
 window.onload = function () {
-
     var c = document.getElementById('carousel');
     var cul = c.getElementsByTagName('ul');
     var cli = c.getElementsByTagName('li');
-
     //最后一张添加第一张的辅助图 第一张添加最后一张的辅助图
     var firstPic = cli[0];
     var lastPic = cli[cli.length - 1];
@@ -26,7 +24,6 @@ window.onload = function () {
     rightButton.id = 'rightButton';
     c.appendChild(rightButton);
 
-    // console.log(cul[0].style.width);
     //direction默认为左右round 参数为flow时为上下翻动
     var direction = cul[0].getAttribute('direction');
     //picNum 图片总数
@@ -52,7 +49,6 @@ window.onload = function () {
         cul[0].style.width =  100 +'%';
     }
 
-
     //carousel functions
     var timer = null;//animation : timer
     var t =null;//autoplay: t
@@ -62,11 +58,9 @@ window.onload = function () {
     var duration = parseInt(cul[0].getAttribute('duration'));
     if( duration == ''){
         durationTime = 2;
-
     }else{
         durationTime = parseInt(cul[0].getAttribute('duration'));
     }
-
 
     var currentSettle = 0;
     if(direction == 'round'){
@@ -74,6 +68,9 @@ window.onload = function () {
     }else{
         currentSettle = parseInt(cul[0].style['top']);
     }
+
+
+
     //设置成动态获取的,在autoplay后由于currentSettle不一致无限+100,不平衡
     var carousel = {
         //init speed?
@@ -88,7 +85,6 @@ window.onload = function () {
                 currentSettle = -((picNum-2) * 100);
             }
             timer = setInterval(function () {
-                // var speed = -100;
                 //每次运行前首先获取当前的left值
                 //speed正负是否有区别 参数已为负
                 var speed = 0;
@@ -153,10 +149,26 @@ window.onload = function () {
         },
         stopPlay:function(){
             clearInterval(t);
+        },
+        indexSlide:function (el) {
+            //根据当前的总图片数来加载相应的导航点数
+            //点击对应的导航点数跳转至相应的图片位置
+
+            //检测出当前的位置 index
+            //与即将要跳转的位置作比较 index*100 current
+            //找出最近的跳转的方向 执行动画向左/右 < > left/right
+            //到达目的位置 静止一定时间后开始自动轮播 autoPlay
+            var currentIndex = el.index;
+            var targetIndex = li.index;
+
+            if(currentIndex < targetIndex){
+                slideToLeft();
+            }else{
+                slideToRight();
+            }
+
         }
-
     };
-
     //
     //鼠标移出移入时触发
     cul[0].onmouseout = function () {
@@ -167,15 +179,6 @@ window.onload = function () {
     };
     //初始化自动播放
     carousel.autoPlay();
-
-
-
-    //设置自动播放
-    // if(cul[0].autoplay == 'auto'){
-    //     carousel.autoPlay();
-    // }
-
-
     //通过按键去调用相对应的方法
     var leftBtn = document.getElementById('leftButton');
     leftBtn.onclick = function () {
@@ -193,6 +196,26 @@ window.onload = function () {
             carousel.slideToBottom();
         }
     };
+
+    //初始化导航栏
+    var nav = cul[0].getAttribute('nav');
+
+    if(nav == true){
+        //创建navigator
+        var navigator = document.createElement('div');
+        for(var i = 0;i < cli.length - 2;i++){
+            navigator.appendChild('li');
+            var nli = document.getElementsByTagName('li');
+            nli[nli.index].click(function () {
+                carousel.indexSlide();
+            });
+
+        }
+    }else{
+
+    }
+
+
 
 
 };

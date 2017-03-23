@@ -4,9 +4,11 @@
 var carousel = {
     init:function () {
         //初始化按钮 不要添加辅助图
+        $('#carousel ul').appendChild();
     },
     animation:function () {
-        //动画效果 淡入淡出 滑动 
+        //动画效果 淡入淡出 滑动
+
     },
     slideToLeft:function () {
         //滑动至左
@@ -22,5 +24,10 @@ var carousel = {
     },
     start:function () {
         //开始接受参数调用方法
+        carousel.init();
     }
 };
+
+$(function () {
+    carousel.start();
+})
