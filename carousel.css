@@ -1,12 +1,18 @@
 body{position: relative;}
 img{width: 100%;height: 100%;}
+/*外部适应框*/
 .content{width: 500px;height: 250px;position: absolute;}
+/*------------------------------------------------------*/
 #carousel{width: 100%;height: 100%;position: absolute;top: 0;left: 0;overflow: hidden;}
 #carousel ul{position: absolute;top: 0;left: 0;height: 100%;}
 #carousel ul li{height: 100%;display: block;}
 .round{float: left;}
 .leftButton{position: absolute;width: 50px;height: 50px;left: 5px;top: 50%;margin-top: -25px;text-align: center;line-height: 50px;}
 .rightButton{position: absolute;width: 50px;height: 50px;right: 5px;top: 50%;margin-top: -25px;text-align: center;line-height: 50px;}
+/*navigator*/
+.navigator{position: absolute;bottom: 10px;left: 50%; transform: translate(-50%,0); }
+.navigator span{width: 10px;height: 10px;border-radius: 50%;margin-right: 15px;background: #ffffff;}
+.navigator span .active{background: #000000;}
 /*iconfont*/
 .icon-left:before { content: "\e612"; }
 .icon-right:before { content: "\e613"; }

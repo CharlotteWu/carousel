@@ -8,7 +8,6 @@ var carousel = {
     },
     animation:function () {
         //动画效果 淡入淡出 滑动
-
     },
     slideToLeft:function () {
         //滑动至左

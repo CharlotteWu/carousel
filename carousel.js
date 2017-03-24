@@ -69,8 +69,6 @@ window.onload = function () {
         currentSettle = parseInt(cul[0].style['top']);
     }
 
-
-
     //设置成动态获取的,在autoplay后由于currentSettle不一致无限+100,不平衡
     var carousel = {
         //init speed?
@@ -95,10 +93,10 @@ window.onload = function () {
                     // speed = Math.ceil(currentSettle+target - parseInt(cul[0].style[direction]))/8;
                     speed = -10;
                 }
-                //console.log(speed);
-                console.log('current：'+ currentSettle);
-                console.log('target：'+target);
-                console.log('direction：'+parseInt(cul[0].style[direction]));
+
+                // console.log('current：'+ currentSettle);
+                // console.log('target：'+target);
+                // console.log('direction：'+parseInt(cul[0].style[direction]));
                 //当到达目的位置时
                 if(parseInt(cul[0].style[direction]) == currentSettle+target){
                     clearInterval(timer);
@@ -150,7 +148,7 @@ window.onload = function () {
         stopPlay:function(){
             clearInterval(t);
         },
-        indexSlide:function (el) {
+        indexSlide:function (currentIndex,targetIndex) {
             //根据当前的总图片数来加载相应的导航点数
             //点击对应的导航点数跳转至相应的图片位置
 
@@ -158,15 +156,13 @@ window.onload = function () {
             //与即将要跳转的位置作比较 index*100 current
             //找出最近的跳转的方向 执行动画向左/右 < > left/right
             //到达目的位置 静止一定时间后开始自动轮播 autoPlay
-            var currentIndex = el.index;
-            var targetIndex = li.index;
-
-            if(currentIndex < targetIndex){
-                slideToLeft();
-            }else{
-                slideToRight();
+            if(direction == 'round'){
+                carousel.animation(-(targetIndex - currentIndex)*100,'left');
+            }else if(direction == 'flow'){
+                carousel.animation(-(targetIndex - currentIndex)*100,'top');
             }
-
+            //执行完毕后自动轮播
+            carousel.autoPlay();
         }
     };
     //
@@ -203,16 +199,24 @@ window.onload = function () {
     if(nav == true){
         //创建navigator
         var navigator = document.createElement('div');
+        navigator.className = 'navigator';
+        //初始化导航栏
         for(var i = 0;i < cli.length - 2;i++){
-            navigator.appendChild('li');
-            var nli = document.getElementsByTagName('li');
-            nli[nli.index].click(function () {
-                carousel.indexSlide();
-            });
+            navigator.appendChild('span');
+        }
+        var navDot = navigator.getElementsByTagName('span');
+        //依次点击对应的导航点跳转
+        //let es6
+        //j相当于当前的index
+        for(let j=0;j<navDot.length;j++){
+            navDot[j].onclick = function (){
+                carousel.indexSlide(parseInt(cul[0].style.left/100),j);//执行跳转动画
+            }
+
 
         }
     }else{
-
+        //不进行创建导航栏
     }
 
 
