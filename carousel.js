@@ -49,6 +49,7 @@ window.onload = function () {
         cul[0].style.width =  100 +'%';
     }
 
+
     //carousel functions
     var timer = null;//animation : timer
     var t =null;//autoplay: t
@@ -93,7 +94,6 @@ window.onload = function () {
                     // speed = Math.ceil(currentSettle+target - parseInt(cul[0].style[direction]))/8;
                     speed = -10;
                 }
-
                 // console.log('current：'+ currentSettle);
                 // console.log('target：'+target);
                 // console.log('direction：'+parseInt(cul[0].style[direction]));
@@ -151,7 +151,6 @@ window.onload = function () {
         indexSlide:function (currentIndex,targetIndex) {
             //根据当前的总图片数来加载相应的导航点数
             //点击对应的导航点数跳转至相应的图片位置
-
             //检测出当前的位置 index
             //与即将要跳转的位置作比较 index*100 current
             //找出最近的跳转的方向 执行动画向左/右 < > left/right
@@ -192,10 +191,9 @@ window.onload = function () {
             carousel.slideToBottom();
         }
     };
-
     //初始化导航栏
     var nav = cul[0].getAttribute('nav');
-
+    
     if(nav == true){
         //创建navigator
         var navigator = document.createElement('div');
@@ -212,14 +210,9 @@ window.onload = function () {
             navDot[j].onclick = function (){
                 carousel.indexSlide(parseInt(cul[0].style.left/100),j);//执行跳转动画
             }
-
-
         }
     }else{
         //不进行创建导航栏
     }
-
-
-
 
 };

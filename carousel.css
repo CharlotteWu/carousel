@@ -10,8 +10,8 @@ img{width: 100%;height: 100%;}
 .leftButton{position: absolute;width: 50px;height: 50px;left: 5px;top: 50%;margin-top: -25px;text-align: center;line-height: 50px;}
 .rightButton{position: absolute;width: 50px;height: 50px;right: 5px;top: 50%;margin-top: -25px;text-align: center;line-height: 50px;}
 /*navigator*/
-.navigator{position: absolute;bottom: 10px;left: 50%; transform: translate(-50%,0); }
-.navigator span{width: 10px;height: 10px;border-radius: 50%;margin-right: 15px;background: #ffffff;}
+.navigator{position: absolute;z-index: 100;bottom: 10px;left: 50%; transform: translate(-50%,0); }
+.navigator span{display:inline-block;width: 8px;height: 8px;border-radius: 50%;margin-right: 12px;background: #ffffff;}
 .navigator span .active{background: #000000;}
 /*iconfont*/
 .icon-left:before { content: "\e612"; }
